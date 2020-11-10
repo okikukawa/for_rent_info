@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_10_055026) do
+ActiveRecord::Schema.define(version: 2020_11_10_062757) do
+
+  create_table "near_stations", force: :cascade do |t|
+    t.string "route_name"
+    t.string "station_name"
+    t.integer "minutes"
+    t.integer "proparty_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["proparty_id"], name: "index_near_stations_on_proparty_id"
+  end
 
   create_table "proparties", force: :cascade do |t|
     t.string "name"
