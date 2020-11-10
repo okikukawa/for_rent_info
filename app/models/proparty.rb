@@ -1,0 +1,2 @@
+class Proparty < ApplicationRecord
+end
