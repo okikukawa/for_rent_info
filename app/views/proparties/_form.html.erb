@@ -1,0 +1,44 @@
+<%= form_with(model:@proparty,local:true)do|f| %>
+  <% if @proparty.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= @proparty.errors.count %>件のエラーがあります。</h2>
+      <ul>
+        <% @proparty.errors.full_messages.each do|msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div>
+    <%= f.label :name,"物件名" %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :price,"賃料" %><br>
+    <label><%= f.number_field :price %>円</label>
+  </div>
+  <div>
+    <%= f.label :address,"住所" %><br>
+    <%= f.text_field :address %>
+  </div>
+  <div>
+    <%= f.label :age,"築年数" %><br>
+    <label><%= f.number_field :age %>年</label>
+  </div>
+  <div>
+    <%= f.label :content,"備考" %><br>
+    <%= f.text_area :content %>
+  </div>
+  <hr>
+  <% n = 0 %>
+  <%= f.fields_for :near_stations do |near_station| %><br>
+    <h2>最寄り駅<%= n += 1 %></h2>
+    <%= near_station.label :route_name,"路線名" %><br>
+    <%= near_station.text_field :route_name %><br>
+    <%= near_station.label :station_name,"駅名" %><br>
+    <%= near_station.text_field :station_name %><br>
+    <%= near_station.label :minutes,"徒歩分数" %><br>
+    <label><%= near_station.number_field :minutes %>分</label><br>
+  <% end %>
+  <p><%= f.submit '登録する' %></p>
+<% end %>
