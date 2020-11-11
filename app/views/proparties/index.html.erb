@@ -1,20 +1,24 @@
 <h1>物件一覧</h1>
-<tr>
-  <th>物件名</th>
-  <th>賃料</th>
-  <th>住所</th>
-  <th>築年数</th>
-  <th>備考</th>
-</tr>
-<% @proparty.each do|proparty| %>
+<p><%= notice %></p>
+<table>
   <tr>
-    <td><%= proparty.name %></td>
-    <td><%= proparty.price %></td>
-    <td><%= proparty.address %></td>
-    <td><%= proparty.old %></td>
-    <td><%= proparty.content %></td>
+    <th>物件名</th>
+    <th>賃料</th>
+    <th>住所</th>
+    <th>築年数</th>
+    <th>備考</th>
   </tr>
-  <!-- <%= link_to '詳細',proparty_path %>
-  <%= link_to '編集',edit_proparty_path(proparty.id) %>
-  <%= link_to '削除',proparty_path(proparty.id),method: :delete %> -->
-<% end %>
+  <% @proparty.each do|proparty| %>
+    <tr>
+      <td><%= proparty.name %></td>
+      <td><%= proparty.price %>円</td>
+      <td><%= proparty.address %></td>
+      <td><%= proparty.age %></td>
+      <td><%= proparty.content %></td>
+      <td><%= link_to '詳細',proparty_path(proparty.id) %></td>
+      <td><%= link_to '編集',edit_proparty_path(proparty.id) %></td>
+      <td><%= link_to '削除',proparty_path(proparty.id),method: :delete, data:{ confirm: "この物件情報を削除してもよろしいですか？"} %></td>
+    </tr>
+  <% end %>
+</table>
+<p><%= link_to '物件を登録する',new_proparty_path %></p>
