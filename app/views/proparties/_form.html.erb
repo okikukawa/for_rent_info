@@ -10,33 +10,35 @@
     </div>
   <% end %>
   <div>
-    <%= f.label :name %><br>
+    <%= f.label :name,"物件名" %><br>
     <%= f.text_field :name %>
   </div>
   <div>
-    <%= f.label :price %><br>
-    <%= f.number_field :price %>
+    <%= f.label :price,"賃料" %><br>
+    <label><%= f.number_field :price %>円</label>
   </div>
   <div>
-    <%= f.label :address %><br>
+    <%= f.label :address,"住所" %><br>
     <%= f.text_field :address %>
   </div>
   <div>
-    <%= f.label :age %><br>
-    <%= f.number_field :age %>
+    <%= f.label :age,"築年数" %><br>
+    <label><%= f.number_field :age %>年</label>
   </div>
   <div>
-    <%= f.label :content %><br>
+    <%= f.label :content,"備考" %><br>
     <%= f.text_area :content %>
   </div>
-    <%= f.fields_for :near_stations do |near_station| %><br>
-      <h2>最寄り駅<%= near_station.index + 1 %></h2>
-      <%= near_station.label :route_name %><br>
-      <%= near_station.text_field :route_name %><br>
-      <%= near_station.label :station_name %><br>
-      <%= near_station.text_field :station_name %><br>
-      <%= near_station.label :minutes %><br>
-      <%= near_station.number_field :minutes %><br>
-    <% end %>
+  <hr>
+  <% n = 0 %>
+  <%= f.fields_for :near_stations do |near_station| %><br>
+    <h2>最寄り駅<%= n += 1 %></h2>
+    <%= near_station.label :route_name,"路線名" %><br>
+    <%= near_station.text_field :route_name %><br>
+    <%= near_station.label :station_name,"駅名" %><br>
+    <%= near_station.text_field :station_name %><br>
+    <%= near_station.label :minutes,"徒歩分数" %><br>
+    <label><%= near_station.number_field :minutes %>分</label><br>
+  <% end %>
   <p><%= f.submit '登録する' %></p>
 <% end %>
